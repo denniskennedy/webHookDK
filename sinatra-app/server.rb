@@ -1,9 +1,7 @@
-# myapp.rb
-
 require 'sinatra'
 require 'json'
 
-get '/payload' do
+post '/payload' do
   push = JSON.parse(request.body.read)
   puts "I got some JSON : #(push.inspect)"
 end
