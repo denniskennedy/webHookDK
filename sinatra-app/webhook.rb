@@ -1,14 +1,17 @@
 require 'sinatra'
 require 'json'
+#require 'open-uri'
+
+#result = open('https://requestb.in/1cihnwq1')
+#result.lines { |f| f.each_line {|line| p line} }
+
+set :port, 20001
 
 post '/payload' do
-  status 204 #successful request with no body content
-  
-  request.body.rewind
-  request_payload = JSON.parse(request.body.read)
-  
-  #append the payload to a file
-  File.open("password.txt", "a") do |f|
-    f.puts(request_payload)
-  end
+  push = JSON.parse(request.body.read)
+  puts "I got some JSON: #{push.inspect}"
+end
+
+get '/payload' do
+  "Running..."
 end
